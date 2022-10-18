@@ -12,7 +12,8 @@ export default function(mind, option) {
   const createLi = (id, name, keyname) => {
     const li = document.createElement('li')
     li.id = id
-    li.innerHTML = `<span>${encodeHTML(name)}</span><span>${encodeHTML(keyname)}</span>`
+    li.className = 'disabled'
+    li.innerHTML = `<span>${encodeHTML(name)}</span>`
     return li
   }
   const locale = i18n[mind.locale] ? mind.locale : 'en'
@@ -58,14 +59,15 @@ export default function(mind, option) {
   }
   const menuContainer = document.createElement('cmenu')
   menuContainer.appendChild(menuUl)
-  menuContainer.hidden = true
+  // menuContainer.hidden = true
 
   mind.container.append(menuContainer)
   let isRoot = true
+  // 鼠标右键点击事件的逻辑处理
   mind.container.oncontextmenu = function(e) {
+    console.log('%c [ e ]-68', 'font-size:13px; background:pink; color:#bf2c9f;', e.target)
     e.preventDefault()
     if (!mind.editable) return
-    // console.log(e.pageY, e.screenY, e.clientY)
     const target = e.target
     if (target.tagName === 'TPC') {
       if (target.parentElement.tagName === 'ROOT') {
@@ -73,6 +75,7 @@ export default function(mind, option) {
       } else {
         isRoot = false
       }
+      // 判断是否是根节点
       if (isRoot) {
         focus.className = 'disabled'
         up.className = 'disabled'
@@ -80,11 +83,14 @@ export default function(mind, option) {
         add_sibling.className = 'disabled'
         remove_child.className = 'disabled'
       } else {
+        add_child.className = ''
+        add_parent.className = ''
         focus.className = ''
         up.className = ''
         down.className = ''
         add_sibling.className = ''
         remove_child.className = ''
+        link.className = ''
       }
       mind.selectNode(target)
       menuContainer.hidden = false
@@ -95,61 +101,61 @@ export default function(mind, option) {
         menuUl.style.bottom = '0px'
       } else {
         menuUl.style.bottom = ''
-        menuUl.style.top = e.clientY + 15 + 'px'
+        // menuUl.style.top = e.clientY + 15 + 'px'
       }
       if (width + e.clientX > window.innerWidth) {
         menuUl.style.left = ''
-        menuUl.style.right = '0px'
+        // menuUl.style.right = '0px'
       } else {
         menuUl.style.right = ''
-        menuUl.style.left = e.clientX + 10 + 'px'
+        // menuUl.style.left = e.clientX + 10 + 'px'
       }
     }
   }
 
   menuContainer.onclick = e => {
-    if (e.target === menuContainer) menuContainer.hidden = true
+    if (e.target === menuContainer) menuContainer.hidden = true 
   }
 
   add_child.onclick = e => {
     mind.addChild()
-    menuContainer.hidden = true
+    // menuContainer.hidden = true
   }
   add_parent.onclick = e => {
     mind.insertParent()
-    menuContainer.hidden = true
+    // menuContainer.hidden = true
   }
   add_sibling.onclick = e => {
     if (isRoot) return
     mind.insertSibling()
-    menuContainer.hidden = true
+    // menuContainer.hidden = true
   }
   remove_child.onclick = e => {
     if (isRoot) return
     mind.removeNode()
-    menuContainer.hidden = true
+    // menuContainer.hidden = true
   }
   focus.onclick = e => {
     if (isRoot) return
     mind.focusNode(mind.currentNode)
-    menuContainer.hidden = true
+    // menuContainer.hidden = true
   }
   unfocus.onclick = e => {
     mind.cancelFocus()
-    menuContainer.hidden = true
+    // menuContainer.hidden = true
   }
   up.onclick = e => {
     if (isRoot) return
     mind.moveUpNode()
-    menuContainer.hidden = true
+    // menuContainer.hidden = true
   }
   down.onclick = e => {
     if (isRoot) return
     mind.moveDownNode()
-    menuContainer.hidden = true
+    // menuContainer.hidden = true
   }
   link.onclick = e => {
-    menuContainer.hidden = true
+    // menuContainer.hidden = true
     const from = mind.currentNode
     const tips = createTips(i18n[locale].clickTips)
     mind.container.appendChild(tips)
