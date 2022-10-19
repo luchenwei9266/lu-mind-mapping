@@ -16,6 +16,7 @@ export default function(mind, option) {
     li.innerHTML = `<span>${encodeHTML(name)}</span>`
     return li
   }
+
   const locale = i18n[mind.locale] ? mind.locale : 'en'
 
   const add_child = createLi('cm-add_child', i18n[locale].addChild, 'tab')
@@ -31,6 +32,19 @@ export default function(mind, option) {
   const up = createLi('cm-up', i18n[locale].moveUp, 'PgUp')
   const down = createLi('cm-down', i18n[locale].moveDown, 'Pgdn')
   const link = createLi('cm-down', i18n[locale].link, '')
+
+  const initBtn = () => {
+    add_child.className = ''
+    add_parent.className = ''
+    focus.className = ''
+    up.className = ''
+    down.className = ''
+    add_sibling.className = ''
+    remove_child.className = ''
+    link.className = ''
+    unfocus.className = 'disabled'
+  }
+
 
   const menuUl = document.createElement('ul')
   menuUl.className = 'menu-list'
@@ -83,14 +97,7 @@ export default function(mind, option) {
         add_sibling.className = 'disabled'
         remove_child.className = 'disabled'
       } else {
-        add_child.className = ''
-        add_parent.className = ''
-        focus.className = ''
-        up.className = ''
-        down.className = ''
-        add_sibling.className = ''
-        remove_child.className = ''
-        link.className = ''
+        initBtn()
       }
       mind.selectNode(target)
       menuContainer.hidden = false
@@ -138,10 +145,12 @@ export default function(mind, option) {
   focus.onclick = e => {
     if (isRoot) return
     mind.focusNode(mind.currentNode)
-    // menuContainer.hidden = true
+    const nmenuContainer = document.getElementsByTagName('nmenu') as any;
+    nmenuContainer[0].hidden = true
   }
   unfocus.onclick = e => {
     mind.cancelFocus()
+    initBtn()
     // menuContainer.hidden = true
   }
   up.onclick = e => {

@@ -203,6 +203,7 @@ export default function(mind) {
   // 鼠标左键点击事件的逻辑处理
   mind.bus.addListener('selectNode', function(nodeObj, clickEvent) {
     if (!clickEvent) return
+    // TODO:好像可以去掉
     let cmenu = document.getElementsByClassName('menu-list');
     for (let i = 0; i < cmenu[0].children.length; i++) {
       cmenu[0].children[i].className = '';
