@@ -1,7 +1,7 @@
 {
-  "name": "mind-elixir",
-  "version": "1.1.1",
-  "description": "Mind elixir is a free open source mind map core.",
+  "name": "lu-mind-mapping",
+  "version": "0.0.1",
+  "description": "lu-mind-mapping is a free open source mind map core.",
   "main": "dist/MindElixir.js",
   "scripts": {
     "start": "webpack-dev-server --mode development --env dist=0",
@@ -19,9 +19,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ssshooter/mind-elixir-core"
+    "url": "https://github.com/luchenwei9266/lu-mind-mapping"
   },
-  "homepage": "https://mind-elixir.com/",
   "author": "ssshooter",
   "license": "MIT",
   "devDependencies": {

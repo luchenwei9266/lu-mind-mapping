@@ -1,5 +1,5 @@
 
-## (20221018)本项目是为了满足公司现有业务需求做出的Demo版本，如需正式使用请考虑使用原作者项目，原项目比较完整而且能适用大部分场景，以下说明均为原作者的README内容。
+## (20221018) This project is to meet the company's existing business needs to make the Demo version, if you need to formally use please consider using the original author of the project, the original project is more complete and can be applied to most scenarios, the following instructions are the original author of the README content.
 
 ![mindelixir logo](https://raw.githubusercontent.com/ssshooter/mind-elixir-core/master/images/logo.png)
 

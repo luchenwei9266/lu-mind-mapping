@@ -1,3 +1,5 @@
+## (20221018)本项目是为了满足公司现有业务需求做出的Demo版本，如需正式使用请考虑使用原作者项目，原项目比较完整而且能适用大部分场景，以下说明均为原作者的README内容。
+
 ![mindelixir logo](https://raw.githubusercontent.com/ssshooter/mind-elixir-core/master/images/logo.png)
 
 <p>
