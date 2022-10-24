@@ -1,6 +1,6 @@
 {
   "name": "lu-mind-mapping",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "lu-mind-mapping is a free open source mind map core.",
   "main": "dist/MindElixir.js",
   "scripts": {
