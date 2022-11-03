@@ -19,7 +19,7 @@
   </a>
 </p>
 
-[中文 README](https://github.com/ssshooter/mind-elixir-core/blob/master/readme.cn.md)
+[中文 README](https://github.com/luchenwei9266/lu-mind-mapping/blob/main/readme.cn.md)
 
 Mind elixir is a free open source mind map core.
 
