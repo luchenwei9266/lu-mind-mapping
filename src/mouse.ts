@@ -1,4 +1,5 @@
 import { dragMoveHelper,getQueryVariable } from './utils/index'
+import AlloyFinger from 'alloyfinger'
 export default function(mind) {
   var timeer = null;
   mind.map.addEventListener('click', e => {
@@ -68,14 +69,28 @@ export default function(mind) {
       if(e.wheelDelta > 0) { 
         // 鼠标滚轮前滚
         if (mind.scaleVal >= 0.6) {
-          mind.scale((mind.scaleVal -= 0.1))
+          mind.scale(mind.scaleVal -= 0.1)
         } 
       } else {
         // 鼠标滚轮后滚
         if (mind.scaleVal <= 1.6) {
-          mind.scale((mind.scaleVal += 0.1))
+          mind.scale(mind.scaleVal += 0.1)
         }
       }
-    },30)
-  })
+    },20)
+  });
+
+  /**
+   * 手势放大事件
+   * TODO:放在index里感觉可能会好一点
+   */
+   var initScale = 1;
+   new AlloyFinger(mind.map, {
+       multipointStart: function () {
+           initScale = mind.scaleVal;
+       },
+       pinch: function (evt) {
+           mind.scale(initScale * evt.zoom)
+       }
+   });
 }
