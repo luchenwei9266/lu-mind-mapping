@@ -149,6 +149,7 @@ export interface MindElixirInstance {
   primaryNodeHorizontalGap: number,
   primaryNodeVerticalGap: number,
   mobileMenu: boolean,
+  upload: Function,
 
   container: HTMLElement,
   map: HTMLElement,
@@ -182,6 +183,7 @@ export interface Options {
   primaryNodeHorizontalGap?: number,
   primaryNodeVerticalGap?: number,
   mobileMenu?: boolean,
+  upload?: Function
 }
 const $d = document
 /**
@@ -220,6 +222,7 @@ function MindElixir(this: MindElixirInstance, {
   primaryNodeHorizontalGap,
   primaryNodeVerticalGap,
   mobileMenu,
+  upload
 }: Options) {
   console.log('ME_version ' + MindElixir.version, this)
   let box
@@ -239,6 +242,7 @@ function MindElixir(this: MindElixirInstance, {
   this.nodeMenu = nodeMenu === undefined ? true : nodeMenu
   this.keypress = keypress === undefined ? true : keypress
   this.mobileMenu = mobileMenu
+  this.upload = upload
   // record the direction before enter focus mode, must true in focus mode, reset to null after exit focus
   // todo move direction to data
   this.direction = typeof direction === 'number' ? direction : 1
