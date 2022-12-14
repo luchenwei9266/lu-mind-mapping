@@ -119,7 +119,7 @@ export function createInputDiv(tpc: Topic) {
   div.textContent = origin
   div.contentEditable = 'true'
   div.spellcheck = false
-  div.style.cssText = `min-width:${tpc.offsetWidth - 22}px;`
+  div.style.cssText = `min-width:${tpc.offsetWidth - 22}px`
   if (this.direction === LEFT) div.style.right = '0'
   div.focus()
 
@@ -144,7 +144,7 @@ export function createInputDiv(tpc: Topic) {
       this.map.focus()
     }
   })
-  // 双击处理
+ 
   div.addEventListener('blur', () => {
     if (!div) return
     const node = tpc.nodeObj
@@ -171,28 +171,22 @@ export function createInputDiv(tpc: Topic) {
       for (let i = 0; i < item.length; i++) {
         if(item[i].type.indexOf('image') !== -1) {
           file = item[i].getAsFile();
-          const tempParentNode = tpc.parentNode;
-          let fr = new FileReader();
-          // 读取file 然后取回base64 编码路径
-          fr.readAsDataURL(file);
-          fr.onload = (e) => {
-            /** TODO:调整大小等产品有需要再说吧。。
-             * let dragDiv = document.createElement('div');
-               dragDiv.setAttribute('style',"position:absolute;bottom:0;right:0;width:5px;height:5px;background-color:#'fff';");
-               tpc.appendChild(dragDiv);
-             **/ 
-            let tempDiv = document.createElement('div');
-            tempDiv.style.marginTop = '6px';
-            let img = document.createElement('img');
-            img.src = e.target.result as string;
-            img.style.maxWidth = '350px';
-            tpc.appendChild(tempDiv);
-            tpc.appendChild(img); 
-            // origin = "";
-            
-          }
-          break;
-        } 
+        }
+        break;
+      }
+      const tempParentNode = tpc.parentNode;
+      let fr = new FileReader();
+      // 读取file 然后取回base64 编码路径
+      fr.readAsDataURL(file);
+      fr.onload = (e) => {
+        let tempDiv = document.createElement('div');
+        tempDiv.style.marginTop = '6px';
+        let img = document.createElement('img');
+        img.src = e.target.result as string;
+        img.style.maxWidth = '350px';
+        tpc.appendChild(tempDiv);
+        tpc.childNodes[0].textContent = "";
+        tpc.appendChild(img); 
       }
     }
   });

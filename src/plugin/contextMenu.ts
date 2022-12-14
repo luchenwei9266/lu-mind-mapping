@@ -79,7 +79,6 @@ export default function(mind, option) {
   let isRoot = true
   // 鼠标右键点击事件的逻辑处理
   mind.container.oncontextmenu = function(e) {
-    console.log('%c [ e ]-68', 'font-size:13px; background:pink; color:#bf2c9f;', e.target)
     e.preventDefault()
     if (!mind.editable) return
     const target = e.target

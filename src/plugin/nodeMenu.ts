@@ -193,6 +193,11 @@ export default function(mind) {
 
   // handle node selection
   mind.bus.addListener('unselectNode', function() {
+    let currentImg = document.getElementById('currentImg');
+    if (currentImg) {
+      currentImg.setAttribute('id',"");
+      currentImg.style.border = "0";
+    }
     menuContainer.hidden = true
     // 将固定菜单恢复为禁止状态
     let cmenu = document.getElementsByClassName('menu-list');
@@ -200,9 +205,14 @@ export default function(mind) {
       cmenu[0].children[i].className = 'disabled';
     }
   })
-  // 鼠标左键点击事件的逻辑处理
+  // 鼠标左键点击事件的逻辑处理--node节点
   mind.bus.addListener('selectNode', function(nodeObj, clickEvent) {
     if (!clickEvent) return
+    let currentImg = document.getElementById('currentImg');
+    if (currentImg) {
+      currentImg.setAttribute('id',"");
+      currentImg.style.border = "0";
+    }
     // TODO:好像可以去掉
     let cmenu = document.getElementsByClassName('menu-list');
     for (let i = 0; i < cmenu[0].children.length; i++) {
@@ -248,5 +258,13 @@ export default function(mind) {
     }
     // urlInput.value = nodeObj.hyperLink || ''
     memoInput.value = nodeObj.memo || ''
+  })
+  // 处理图片点击
+  mind.map.addEventListener('click',function(e) {
+    if (e.target.tagName === 'IMG') {
+      let ele = e.target;
+      ele.setAttribute('id','currentImg');
+      ele.style.border = '1px solid #00AAFF'
+    }
   })
 }

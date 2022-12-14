@@ -91,6 +91,13 @@ export default function(mind) {
   mind.map.onkeydown = e => {
     // console.log(e)
     e.preventDefault()
+    let ele = document.getElementById('currentImg');
+    let div = document.getElementById('currentImg').previousElementSibling;
+    if (ele) {
+      ele.parentNode.removeChild(div);
+      ele.parentNode.removeChild(ele);
+      mind.linkDiv();
+    }
     if (!mind.editable) return
     // console.log(e, e.target)
     if (e.target !== e.currentTarget) {
